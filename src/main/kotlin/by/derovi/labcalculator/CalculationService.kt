@@ -68,16 +68,6 @@ class CalculationService {
                     .text("-")
                     .callbackData("-")
                     .build(),
-                InlineKeyboardButton
-                    .builder()
-                    .text("*")
-                    .callbackData("*")
-                    .build(),
-                InlineKeyboardButton
-                    .builder()
-                    .text("/")
-                    .callbackData("/")
-                    .build()
             ))
             build()
         })
@@ -87,8 +77,6 @@ class CalculationService {
         calculation.operation = when (request.message) {
             "+" -> Operation.PLUS
             "-" -> Operation.MINUS
-            "*" -> Operation.MULTIPLY
-            "/" -> Operation.DIV
             else -> {
                 invalidInput(request)
                 return
