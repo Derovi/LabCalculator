@@ -20,9 +20,7 @@ class CalculationService {
         }
         val calculation = userToCalculation[request.userID]
         if (calculation == null) {
-            val newCalculation = Calculation()
-            userToCalculation[request.userID] = newCalculation
-            firstNumberInput(request, newCalculation)
+            firstNumberInput(request)
         } else if (calculation.operation == null) {
             operationInput(request, calculation)
         } else {
@@ -49,13 +47,16 @@ class CalculationService {
         sendMessage(request, "Укажите первое число")
     }
 
-    fun firstNumberInput(request: Request, calculation: Calculation) {
+    fun firstNumberInput(request: Request) {
         val value = request.message.replace(",", ".").toBigDecimalOrNull()
         if (value == null) {
             invalidInput(request)
             return
         }
+
+        val calculation = Calculation()
         calculation.firstNumber = value
+        userToCalculation[request.userID] = calculation
         sendMessage(request, "Укажите необходимую операцию", with(InlineKeyboardMarkup.builder()) {
             keyboardRow(mutableListOf(
                 InlineKeyboardButton
