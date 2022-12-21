@@ -1,5 +1,5 @@
 package by.derovi.labcalculator
 
-enum class Operation {
-    PLUS, MINUS, MULTIPLY, DIV
+enum class Operation(val symbol: String) {
+    PLUS("+"), MINUS("-"), MULTIPLY("*"), DIV("/")
 }
