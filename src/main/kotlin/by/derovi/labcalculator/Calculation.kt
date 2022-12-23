@@ -62,7 +62,7 @@ class Calculation {
                 if (b == BigDecimal.ZERO) {
                     zeroDiv = true
                     BigDecimal.ZERO
-                } else a / b
+                } else a.divide(b, 15, RoundingMode.DOWN)
             }
         }
 
